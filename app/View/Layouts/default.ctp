@@ -39,7 +39,26 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="container">
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
+		<?php if(AuthComponent::user()): ?>
+                        
+                        
+                        <a href="/cobike/categories/index">Categories</a>
+                        
+                        <a href="/cobike/bikes/index">Bikes</a>
+                                              
+                        <a href="/cobike/users/index">User</a>
+                       
+                            <a href="/cobike/users/logout" align="right">Log out   </a>
+                            <div align="right">
+                                <?php echo "Hello"," ", $this->Session->read('Auth.User.first_name'); ?>
+                           </div>
+                            <?php else: ?>
+                            <!--<a href="<?php// echo $this->element('login'); ?>">Login</a>-->
+                            <a href="/cobike/categories/index">Categories</a>
+                       <a href="/cobike/bikes/index">Bikes</a>
+                            <a href="/cobike/users/login">Login</a>
+                            <?php endif; ?>
+                </div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
@@ -58,6 +77,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</p>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	
 </body>
 </html>
